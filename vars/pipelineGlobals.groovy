@@ -1,4 +1,3 @@
-
 def getAccountID(String environment){
     switch(environment) { 
         case 'dev': 

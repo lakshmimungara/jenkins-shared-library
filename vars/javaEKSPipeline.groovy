@@ -24,15 +24,15 @@ def call(Map configMap){
             stage('Read the version') {
                 steps {
                     script{
-                        def packageJson = readJSON file: 'package.json'
-                        appVersion = packageJson.version
+                        def pom = readMavenPom file: 'pom.xml'
+                        appVersion = pom.version
                         echo "App version: ${appVersion}"
                     }
                 }
             }
             stage('Install Dependencies') {
                 steps {
-                    sh 'npm install'
+                    sh 'mvn clean package'
                 }
             }
             /* stage('SonarQube analysis') {
